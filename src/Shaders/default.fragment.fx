@@ -329,7 +329,7 @@ void main(void) {
 	// Emissive
 	vec3 emissiveColor = vEmissiveColor;
 #ifdef EMISSIVE
-	emissiveColor += texture2D(emissiveSampler, vEmissiveUV).rgb * vEmissiveInfos.y;
+	emissiveColor = (vEmissiveColor * (1.0 - texture2D(emissiveSampler, vEmissiveUV).a)) + (texture2D(emissiveSampler, vEmissiveUV) * texture2D(emissiveSampler, vEmissiveUV).a); 
 #endif
 
 #ifdef EMISSIVEFRESNEL
